@@ -1,0 +1,21 @@
+az login
+
+az account list --output tsv
+
+az account set --subscription "IaaS for Devs"
+
+az group create --name IaaS-cli-rg --location westus
+
+az vm create \
+    --resource-group IaaS-cli-rg \
+    --name IaaS-cli \
+    --location westus \
+    --vnet-name IaaS-cli-vnet \
+    --subnet IaaS-cli-subnet \
+    --nsg IaaS-cli-nsg \
+    --public-ip-address IaaS-cli-ip \
+    --image win2016datacenter \
+    --admin-username tibi \
+    --admin-password myP@ssw0rd12
+
+az vm open-port --port 80 --resource-group IaaS-cli-rg --name IaaS-cli   
