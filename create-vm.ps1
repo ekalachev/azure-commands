@@ -23,7 +23,7 @@ New-AzVm `
     -OpenPorts 80, 3389 `
     -Credential $credential
 
-$ipAddress = Get-AzPublicIpAddress -ResourceGroupName Iaas-ps-rg `
+$ipAddress = Get-AzPublicIpAddress -ResourceGroupName $rgName `
 | Select-Object -ExpandProperty IpAddress
 
 mstsc /v:$ipAddress
