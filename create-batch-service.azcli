@@ -1,0 +1,19 @@
+az login
+
+az account list --output tsv
+
+az account set --subscription "IaaS for Devs"
+
+az group create --name batch-cli-rg --location westus
+
+az storage account create \
+    --resource-group batch-cli-rg \
+    --name storageacctcli12342 \
+    --location westus2 \
+    --sku Standard_LRS
+
+az batch account create \
+    --name batchacctcli12342 \
+    --storage-account storageacctcli12342 \
+    --resource-group batch-cli-rg \
+    --location westus2
